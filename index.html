@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>router translate</title>
+</head>
+
+<body>
+    <h1>Router Translate</h1>
+    <p>random language:</p>
+    <textarea placeholder="random language" rows="15" cols="80" id="random_language"></textarea>
+    <br>
+    <button onclick="trans()">translate</button>
+    <p>router:</p>
+    <p id="router_language"></p>
+    <script>
+        function trans() {
+            var x = document.getElementById("router_language");
+            //var text = document.getElementById("random_language").value;
+            //var text = text.trim(); //remove space
+            //var l = text.length % 6; 
+            //var l = l + 1;
+            var r = random_caseR();
+            var o = random_caseO();
+            var u = random_caseU();
+            var t = random_caseT();
+            var e = random_caseE();
+            var r_ = random_caseR_();
+            var result = r+o+u+t+e+r_;
+            x.innerHTML = result;
+                
+        }
+        function random_caseR() {
+            if (Math.random() < 0.50) {
+                return "r";
+            } else {
+                return "R";
+            }
+        }
+        function random_caseO() {
+            if (Math.random() < 0.50) {
+                return "o";
+            } else {
+                return "O";
+            }
+        }
+        function random_caseU() {
+            if (Math.random() < 0.50) {
+                return "u";
+            } else {
+                return "U";
+            }
+        }
+        function random_caseT() {
+            if (Math.random() < 0.50) {
+                return "t";
+            } else {
+                return "T";
+            }
+        }
+        function random_caseE() {
+            if (Math.random() < 0.50) {
+                return "e";
+            } else {
+                return "E";
+            }
+        }
+        function random_caseR_() {
+            if (Math.random() < 0.50) {
+                return "r";
+            } else {
+                return "R";
+            }
+        }
+    </script>
+</body>
+</html>
