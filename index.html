@@ -12,25 +12,33 @@
     <button onclick="trans()">translate</button>
     <p>router:</p>
     <p id="router_language"></p>
+    <p id="test_writeTranslation"></p>
     <br>
     <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">don't click this</a>
     <script>
         function trans() {
             var x = document.getElementById("router_language");
-            //var text = document.getElementById("random_language").value;
+            var text = document.getElementById("random_language").value;
             //var text = text.trim(); //remove space
             //var l = text.length % 6; 
             //var l = l + 1;
-            var r = random_caseR();
-            var o = random_caseO();
-            var u = random_caseU();
-            var t = random_caseT();
-            var e = random_caseE();
-            var r_ = random_caseR_();
-            var result = r+o+u+t+e+r_;
+            var translated = readTranslation(text); //fing a translation if already translated
+            if (translated == undefined) {
+                var r = random_caseR();
+                var o = random_caseO();
+                var u = random_caseU();
+                var t = random_caseT();
+                var e = random_caseE();
+                var r_ = random_caseR_();
+                var result = r+o+u+t+e+r_;
+                writeTranslation(result, text);
+            } else var result = translated;
+
             x.innerHTML = result;
-                
+            
+            //document.getElementById("test_writeTranslation").innerHTML = test;
         }
+
         function random_caseR() {
             if (Math.random() < 0.50) {
                 return "r";
@@ -38,6 +46,7 @@
                 return "R";
             }
         }
+
         function random_caseO() {
             if (Math.random() < 0.50) {
                 return "o";
@@ -45,6 +54,7 @@
                 return "O";
             }
         }
+
         function random_caseU() {
             if (Math.random() < 0.50) {
                 return "u";
@@ -52,6 +62,7 @@
                 return "U";
             }
         }
+
         function random_caseT() {
             if (Math.random() < 0.50) {
                 return "t";
@@ -59,6 +70,7 @@
                 return "T";
             }
         }
+        
         function random_caseE() {
             if (Math.random() < 0.50) {
                 return "e";
@@ -66,6 +78,7 @@
                 return "E";
             }
         }
+
         function random_caseR_() {
             if (Math.random() < 0.50) {
                 return "r";
@@ -73,6 +86,47 @@
                 return "R";
             }
         }
+
+        function writeTranslation(result, text) {
+            var retrievedData = sessionStorage.getItem("translations");
+            var g = JSON.parse(retrievedData);
+
+            if(g && g.length) {
+                g.push(text);
+                var i = g.length - 1;
+                g[i] = {text: text, router: result};
+
+            } else {
+                var g = [];
+                g.push(text);
+                var i = g.length - 1;
+                g[i] = {text: text, router: result};
+            }
+
+            sessionStorage.setItem("translations", JSON.stringify(g));
+            
+        }
+
+        function readTranslation(text) {
+            //return undefined;
+            var retrievedData = sessionStorage.getItem("translations");
+            var g = JSON.parse(retrievedData);
+            //console.log(g);
+            if (g == null) {
+                return undefined;
+            }
+
+            var f = g.find(y => y.text === text);
+            if (f == undefined) {
+                return undefined;
+            }
+
+            //console.log(f);
+            var j = f.router;
+            //console.log("j is ", j);
+            return j
+        }
+
     </script>
 </body>
 </html>
