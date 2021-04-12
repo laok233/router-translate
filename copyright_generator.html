@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Copyright Generator</title>
+</head>
+<body>
+    <h1>copyright generator</h1>
+    <p>a useless website right?</p>
+    <p>message:</p>
+    <textarea placeholder="message here (optional)" rows="10" cols="60" id="message"></textarea>
+    <p>Company name:</p>
+    <input type="text" id="company_name">
+    <p>Company type</p>
+    <div>
+        <div>
+            <input type="radio" name="company_type" value="inc.">
+            <label>inc.</label><br>
+        </div>
+
+        <div>
+            <input type="radio" name="company_type" value="LLC">
+            <label>LLC</label><br>
+        </div>
+
+        <div>
+            <input type="radio" name="company_type" value="Ltd.">
+            <label>Ltd.</label><br>
+        </div>
+
+        <div>
+            <input type="radio" name="company_type" value="PLC">
+            <label>PLC</label><br>
+        </div>
+
+        <div>
+            <input type="radio" name="company_type" value="Unltd.">
+            <label>Unltd.</label><br>
+        </div>
+
+        <div>
+            <input type="radio" name="company_type" value="LLP">
+            <label>LLP</label><br>
+        </div>
+
+        <div>
+            <input type="radio" name="company_type" value="IPS">
+            <label>IPS</label><br>
+        </div>
+
+        <div>
+            <input type="radio" name="company_type" value="RC">
+            <label>RC</label><br>
+        </div>
+
+        <div>
+            <input type="radio" name="company_type" value="CIC">
+            <label>CIC</label><br>
+        </div>
+
+        <div>
+            <input type="radio" name="company_type" value="EEIG">
+            <label>EEIG</label><br>
+        </div>
+        
+        <div>
+            <input type="radio" name="company_type" value="SE">
+            <label>SE</label><br>
+        </div>
+    </div>
+
+    <button onclick="generateCopyright()">Generate Copyright</button>
+
+    <p id="copyright"></p>    
+
+    <script>
+        function generateCopyright() {
+            var text = document.getElementById("message").value;
+
+            var company_name = document.getElementById("company_name").value;
+
+            var radios = document.getElementsByName("company_type");
+            for (var i = 0, length = radios.length; i < length; i++) {
+                if (radios[i].checked) {
+                    var company_type = radios[i].value;
+                    break;
+                }
+            }
+            var currentDate = new Date();
+            var date = currentDate.getFullYear();
+
+            var copyright = text + "\n" + " Copyright © " + date + " " + company_name + " " + company_type 
+            + " All rights reserved.";
+
+            document.getElementById("copyright").innerHTML = copyright;
+        }
+    </script>
+</body>
+</html>
